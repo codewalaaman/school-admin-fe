@@ -3,6 +3,7 @@ import { LoginComponent } from './authentication/login/login.component';
 import { RegisterComponent } from './authentication/register/register.component';
 import { DashboardComponent } from './main/dashboard/dashboard.component';
 import { StudentComponent } from './main/student/student.component';
+import { TeacherComponent } from './main/teacher/teacher.component';
 
 export const routes: Routes = [
   {
@@ -36,6 +37,10 @@ export const routes: Routes = [
         path: 'student',
         component: StudentComponent,
       },
+      {
+        path:'teacher',
+        component:TeacherComponent
+      }
     ],
   },
 ];
