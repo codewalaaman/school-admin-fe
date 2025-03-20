@@ -2,10 +2,11 @@ import { Component } from '@angular/core';
 import { NotFoundDataComponent } from '../../common/not-found-data/not-found-data.component';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { ModalComponent } from '../../common/modal/modal.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-student',
-  imports: [NotFoundDataComponent, ModalComponent],
+  imports: [CommonModule, NotFoundDataComponent, ModalComponent],
   templateUrl: './student.component.html',
   styleUrl: './student.component.scss',
   animations: [
@@ -17,5 +18,8 @@ import { ModalComponent } from '../../common/modal/modal.component';
   ],
 })
 export class StudentComponent {
-
+  addStudent:boolean=false;
+  isStudent:boolean=true;
+  isParent:boolean=false;
+  isReview:boolean=false;
 }

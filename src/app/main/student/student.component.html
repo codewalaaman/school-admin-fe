@@ -10,6 +10,7 @@
       </div>
       <div class="mb-6">
         <button
+          (click)="addStudent = true"
           class="bg-indigo-600 inline-flex items-center justify-center whitespace-nowrap rounded py-[10px] px-5 text-sm font-medium text-white hover:bg-indigo-700 hand"
         >
           Add Student
@@ -446,4 +447,369 @@
     </div>
   </div>
 </section>
-<app-modal></app-modal>
+<app-modal [props]="{ modalType: 'modal', showModal: addStudent }">
+  <ol
+    class="lg:flex items-center w-full space-y-4 lg:space-y-0 lg:space-x-4"
+    title
+  >
+    <li class="relative">
+      <button type="button" class="flex items-center font-medium w-full">
+        <span
+          class="w-6 h-6 bg-gray-50 border border-gray-200 rounded-full flex justify-center items-center mr-3 text-sm lg:w-8 lg:h-8"
+          [ngClass]="{ 'bg-indigo-600 text-white': isStudent }"
+        >
+          1
+        </span>
+        <div class="block">
+          <h4
+            class="text-base text-gray-900"
+            [ngClass]="{ 'text-indigo-600': isStudent }"
+          >
+            Student Detail
+          </h4>
+        </div>
+        <svg
+          class="w-5 h-5 ml-2 stroke-indigo-600 sm:ml-4"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M5 18L9.67462 13.0607C10.1478 12.5607 10.3844 12.3107 10.3844 12C10.3844 11.6893 10.1478 11.4393 9.67462 10.9393L5 6M12.6608 18L17.3354 13.0607C17.8086 12.5607 18.0452 12.3107 18.0452 12C18.0452 11.6893 17.8086 11.4393 17.3354 10.9393L12.6608 6"
+            stroke="stroke-current"
+            stroke-width="1.6"
+            stroke-linecap="round"
+          />
+        </svg>
+      </button>
+    </li>
+    <li class="relative">
+      <button type="button" class="flex items-center font-medium w-full hand">
+        <span
+          class="w-6 h-6 bg-gray-50 border border-gray-200 rounded-full flex justify-center items-center mr-3 text-sm lg:w-8 lg:h-8"
+          [ngClass]="{ 'bg-indigo-600 text-white': isParent }"
+          >2</span
+        >
+        <div class="block">
+          <h4
+            class="text-base text-gray-900"
+            [ngClass]="{ 'text-indigo-600': isParent }"
+          >
+            Parent Details
+          </h4>
+        </div>
+        <svg
+          class="w-5 h-5 ml-2 stroke-gray-900 sm:ml-4"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M5 18L9.67462 13.0607C10.1478 12.5607 10.3844 12.3107 10.3844 12C10.3844 11.6893 10.1478 11.4393 9.67462 10.9393L5 6M12.6608 18L17.3354 13.0607C17.8086 12.5607 18.0452 12.3107 18.0452 12C18.0452 11.6893 17.8086 11.4393 17.3354 10.9393L12.6608 6"
+            stroke="stroke-current"
+            stroke-width="1.6"
+            stroke-linecap="round"
+          />
+        </svg>
+      </button>
+    </li>
+    <li class="relative">
+      <button type="button" class="flex items-center font-medium w-full hand">
+        <span
+          class="w-6 h-6 bg-gray-50 border border-gray-200 rounded-full flex justify-center items-center mr-3 text-sm lg:w-8 lg:h-8"
+          [ngClass]="{ 'bg-indigo-600 text-white': isReview }"
+          >3</span
+        >
+        <div class="block">
+          <h4
+            class="text-base text-gray-900"
+            [ngClass]="{ 'text-indigo-600': isReview }"
+          >
+            Review
+          </h4>
+        </div>
+      </button>
+    </li>
+  </ol>
+  <!-- <h4 class="text-sm text-gray-900 font-medium" title>Add Student</h4> -->
+  <form form>
+    @if (isStudent) {
+    <div class="group">
+      <div class="flex gap-x-6 mb-6">
+        <div class="w-full relative">
+          <label
+            class="flex items-center mb-2 text-gray-600 text-sm font-medium"
+            >Academic Year
+            <img class="pl-1" src="/assets/icons/required.svg" alt="*" />
+          </label>
+          <select
+            id="countries"
+            class="h-[10] border border-gray-300 text-gray-600 text-sm rounded-lg block w-full py-2.5 px-4 focus:outline-none"
+          >
+            <!-- <option>Choose a country</option> -->
+            <option selected>April 2025/2026</option>
+            <option>April 2024/2025</option>
+          </select>
+        </div>
+        <div class="w-full relative">
+          <label
+            class="flex items-center mb-2 text-gray-600 text-sm font-medium"
+            >Admission Number
+            <img class="pl-1" src="/assets/icons/required.svg" alt="*" />
+          </label>
+          <input
+            type="number"
+            id="default-search"
+            class="block w-full max-w-xs px-4 py-2 text-sm font-normal shadow-xs text-gray-900 bg-transparent border border-gray-300 rounded-lg placeholder-gray-400 focus:outline-none leading-relaxed"
+            placeholder=""
+            required=""
+          />
+        </div>
+      </div>
+      <div class="flex gap-x-6 mb-6">
+        <div class="w-full relative">
+          <label
+            class="flex items-center mb-2 text-gray-600 text-sm font-medium"
+            >Admission Date
+            <img class="pl-1" src="/assets/icons/required.svg" alt="*" />
+          </label>
+          <select
+            id="countries"
+            class="h-[10] border border-gray-300 text-gray-600 text-sm rounded-lg block w-full py-2.5 px-4 focus:outline-none"
+          >
+            <!-- <option>Choose a country</option> -->
+            <option selected>April 2025/2026</option>
+            <option>April 2024/2025</option>
+          </select>
+        </div>
+        <div class="w-full relative">
+          <label
+            class="flex items-center mb-2 text-gray-600 text-sm font-medium"
+            >Roll Number
+            <img class="pl-1" src="/assets/icons/required.svg" alt="*" />
+          </label>
+          <input
+            type="number"
+            id="default-search"
+            class="block w-full max-w-xs px-4 py-2 text-sm font-normal shadow-xs text-gray-900 bg-transparent border border-gray-300 rounded-lg placeholder-gray-400 focus:outline-none leading-relaxed"
+            placeholder=""
+            required=""
+          />
+        </div>
+        <div class="w-full relative">
+          <label
+            class="flex items-center mb-2 text-gray-600 text-sm font-medium"
+            >Roll Number
+            <img class="pl-1" src="/assets/icons/required.svg" alt="*" />
+          </label>
+          <input
+            type="number"
+            id="default-search"
+            class="block w-full max-w-xs px-4 py-2 text-sm font-normal shadow-xs text-gray-900 bg-transparent border border-gray-300 rounded-lg placeholder-gray-400 focus:outline-none leading-relaxed"
+            placeholder=""
+            required=""
+          />
+        </div>
+      </div>
+    </div>
+    } @else if(isParent){
+    <div class="group">
+      <div class="flex gap-x-6 mb-6">
+        <div class="w-full relative">
+          <label
+            class="flex items-center mb-2 text-gray-600 text-sm font-medium"
+            >First Name
+            <img class="pl-1" src="/assets/icons/required.svg" alt="*" />
+          </label>
+          <input
+            type="text"
+            id="default-search"
+            class="block w-full h-11 px-5 py-2.5 bg-white leading-7 text-base font-normal shadow-xs text-gray-900 bg-transparent border border-gray-300 rounded-full placeholder-gray-400 focus:outline-none"
+            placeholder=""
+            required=""
+          />
+        </div>
+        <div class="w-full relative">
+          <label
+            class="flex items-center mb-2 text-gray-600 text-sm font-medium"
+            >Last Name
+            <img class="pl-1" src="/assets/icons/required.svg" alt="*" />
+          </label>
+          <input
+            type="text"
+            id="default-search"
+            class="block w-full h-11 px-5 py-2.5 bg-white leading-7 text-base font-normal shadow-xs text-gray-900 bg-transparent border border-gray-300 rounded-full placeholder-gray-400 focus:outline-none"
+            placeholder=""
+            required=""
+          />
+        </div>
+      </div>
+      <div class="relative mb-6">
+        <label class="flex items-center mb-2 text-gray-600 text-sm font-medium"
+          >Email Address
+          <img class="pl-1" src="/assets/icons/required.svg" alt="*" />
+        </label>
+        <input
+          type="text"
+          id="default-search"
+          class="block w-full h-11 px-5 py-2.5 bg-white leading-7 text-base font-normal shadow-xs text-gray-900 bg-transparent border border-gray-300 rounded-full placeholder-gray-400 focus:outline-none"
+          placeholder=""
+          required=""
+        />
+      </div>
+      <div class="relative mb-6">
+        <label class="flex items-center mb-2 text-gray-600 text-sm font-medium"
+          >Phone Number
+          <img class="pl-1" src="/assets/icons/required.svg" alt="*" />
+        </label>
+        <input
+          type="text"
+          id="default-search"
+          class="block w-full h-11 px-5 py-2.5 bg-white leading-7 text-base font-normal shadow-xs text-gray-900 bg-transparent border border-gray-300 rounded-full placeholder-gray-400 focus:outline-none"
+          placeholder=""
+          required=""
+        />
+      </div>
+      <div class="flex gap-x-6 mb-6">
+        <div class="w-full relative">
+          <label
+            class="flex items-center mb-2 text-gray-600 text-sm font-medium"
+            >Password
+            <img src="/assets/icons/required.svg" alt="*" />
+          </label>
+          <input
+            type="text"
+            id="default-search"
+            class="block w-full h-11 px-5 py-2.5 bg-white leading-7 text-base font-normal shadow-xs text-gray-900 bg-transparent border border-gray-300 rounded-full placeholder-gray-400 focus:outline-none"
+            placeholder=""
+            required=""
+          />
+        </div>
+        <div class="w-full relative">
+          <label
+            class="flex items-center mb-2 text-gray-600 text-sm font-medium"
+            >Confirm Password
+            <img class="pl-1" src="/assets/icons/required.svg" alt="*" />
+          </label>
+          <input
+            type="text"
+            id="default-search"
+            class="block w-full h-11 px-5 py-2.5 bg-white leading-7 text-base font-normal shadow-xs text-gray-900 bg-transparent border border-gray-300 rounded-full placeholder-gray-400 focus:outline-none"
+            placeholder=""
+            required=""
+          />
+        </div>
+      </div>
+    </div>
+    } @else {
+    <div class="group">
+      <div class="flex gap-x-6 mb-6">
+        <div class="w-full relative">
+          <label
+            class="flex items-center mb-2 text-gray-600 text-sm font-medium"
+            >First Name
+            <img class="pl-1" src="/assets/icons/required.svg" alt="*" />
+          </label>
+          <input
+            type="text"
+            id="default-search"
+            class="block w-full h-11 px-5 py-2.5 bg-white leading-7 text-base font-normal shadow-xs text-gray-900 bg-transparent border border-gray-300 rounded-full placeholder-gray-400 focus:outline-none"
+            placeholder=""
+            required=""
+          />
+        </div>
+        <div class="w-full relative">
+          <label
+            class="flex items-center mb-2 text-gray-600 text-sm font-medium"
+            >Last Name
+            <img class="pl-1" src="/assets/icons/required.svg" alt="*" />
+          </label>
+          <input
+            type="text"
+            id="default-search"
+            class="block w-full h-11 px-5 py-2.5 bg-white leading-7 text-base font-normal shadow-xs text-gray-900 bg-transparent border border-gray-300 rounded-full placeholder-gray-400 focus:outline-none"
+            placeholder=""
+            required=""
+          />
+        </div>
+      </div>
+      <div class="relative mb-6">
+        <label class="flex items-center mb-2 text-gray-600 text-sm font-medium"
+          >Email Address
+          <img class="pl-1" src="/assets/icons/required.svg" alt="*" />
+        </label>
+        <input
+          type="text"
+          id="default-search"
+          class="block w-full h-11 px-5 py-2.5 bg-white leading-7 text-base font-normal shadow-xs text-gray-900 bg-transparent border border-gray-300 rounded-full placeholder-gray-400 focus:outline-none"
+          placeholder=""
+          required=""
+        />
+      </div>
+      <div class="relative mb-6">
+        <label class="flex items-center mb-2 text-gray-600 text-sm font-medium"
+          >Phone Number
+          <img class="pl-1" src="/assets/icons/required.svg" alt="*" />
+        </label>
+        <input
+          type="text"
+          id="default-search"
+          class="block w-full h-11 px-5 py-2.5 bg-white leading-7 text-base font-normal shadow-xs text-gray-900 bg-transparent border border-gray-300 rounded-full placeholder-gray-400 focus:outline-none"
+          placeholder=""
+          required=""
+        />
+      </div>
+      <div class="flex gap-x-6 mb-6">
+        <div class="w-full relative">
+          <label
+            class="flex items-center mb-2 text-gray-600 text-sm font-medium"
+            >Password
+            <img src="/assets/icons/required.svg" alt="*" />
+          </label>
+          <input
+            type="text"
+            id="default-search"
+            class="block w-full h-11 px-5 py-2.5 bg-white leading-7 text-base font-normal shadow-xs text-gray-900 bg-transparent border border-gray-300 rounded-full placeholder-gray-400 focus:outline-none"
+            placeholder=""
+            required=""
+          />
+        </div>
+        <div class="w-full relative">
+          <label
+            class="flex items-center mb-2 text-gray-600 text-sm font-medium"
+            >Confirm Password
+            <img class="pl-1" src="/assets/icons/required.svg" alt="*" />
+          </label>
+          <input
+            type="text"
+            id="default-search"
+            class="block w-full h-11 px-5 py-2.5 bg-white leading-7 text-base font-normal shadow-xs text-gray-900 bg-transparent border border-gray-300 rounded-full placeholder-gray-400 focus:outline-none"
+            placeholder=""
+            required=""
+          />
+        </div>
+      </div>
+    </div>
+    }
+  </form>
+  <button
+    modalBtn
+    type="button"
+    class="pd-dropdown-toggle py-2.5 px-5 text-xs bg-indigo-50 text-indigo-500 rounded-full cursor-pointer font-semibold text-center shadow-xs transition-all duration-500 hover:bg-indigo-100 close-modal-button"
+    data-pd-overlay="#pd-basic-modal"
+    data-modal-target="pd-basic-modal"
+    (click)="addStudent = false"
+  >
+    Cancel
+  </button>
+
+  <button
+    modalBtn
+    type="button"
+    class="py-2.5 px-5 text-xs bg-indigo-500 text-white rounded-full cursor-pointer font-semibold text-center shadow-xs transition-all duration-500 hover:bg-indigo-700 close-modal-button"
+    data-pd-overlay="#pd-basic-modal"
+    data-modal-target="pd-basic-modal"
+  >
+    Okay, got it
+  </button>
+</app-modal>

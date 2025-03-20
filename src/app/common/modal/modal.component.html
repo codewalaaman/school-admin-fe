@@ -1,9 +1,9 @@
 <div
   class="relative z-10"
   aria-labelledby="modal-title"
-  [ngClass]="{'hidden':!modal}"
+  [ngClass]="{ hidden: !props.showModal }"
   role="dialog"
-  [attr.aria-modal]="modal ? 'true' : 'false'"
+  [attr.aria-modal]="props.showModal ? 'true' : 'false'"
   [@modalAnimation]
 >
   <!--
@@ -18,7 +18,7 @@
     -->
   <div
     class="fixed inset-0 bg-gray-500/75 transition-opacity"
-    [attr.aria-hidden]="modal ? 'true' : 'false'"
+    [attr.aria-hidden]="props.showModal ? 'true' : 'false'"
   ></div>
 
   <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
@@ -35,7 +35,9 @@
             From: "opacity-100 translate-y-0 sm:scale-100"
             To: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
         -->
+      <!-- danger modal -->
       <div
+        *ngIf="props.modalType == 'dangerModal'"
         class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg"
       >
         <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
@@ -91,6 +93,50 @@
           </button>
         </div>
       </div>
+      <!-- danger modal -->
+
+      <!-- Modal -->
+      <div
+        class="flex flex-col bg-white rounded-2xl py-4 px-5"
+        *ngIf="props.modalType == 'modal'"
+      >
+        <div
+          class="flex justify-between items-center pb-4 border-b border-gray-200"
+        >
+          <h4 class="text-sm text-gray-900 font-medium">
+            <ng-content select="[title]"></ng-content>
+          </h4>
+          <!-- <button
+            class="block cursor-pointer close-modal-button"
+            data-pd-overlay="#pd-basic-modal"
+            data-modal-target="pd-basic-modal"
+          >
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M7.75732 7.75739L16.2426 16.2427M16.2426 7.75739L7.75732 16.2427"
+                stroke="black"
+                stroke-width="1.6"
+                stroke-linecap="round"
+              ></path>
+            </svg>
+          </button> -->
+        </div>
+        <div class="overflow-y-auto py-4 min-h-[100px]">
+          <ng-content select="[form]"></ng-content>
+        </div>
+        <div
+          class="flex items-center justify-end pt-4 border-t border-gray-200 space-x-4"
+        >
+          <ng-content select="[modalBtn]"></ng-content>
+        </div>
+      </div>
+      <!-- Modal -->
     </div>
   </div>
 </div>
