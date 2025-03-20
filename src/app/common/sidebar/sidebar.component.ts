@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-
 import {
   trigger,
   style,
@@ -9,12 +8,14 @@ import {
   state,
 } from '@angular/animations';
 import { RouterModule } from '@angular/router';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-sidebar',
-  imports: [CommonModule, RouterModule],
+  standalone: true, 
+  imports: [CommonModule, RouterModule, TranslateModule], 
   templateUrl: './sidebar.component.html',
-  styleUrl: './sidebar.component.scss',
+  styleUrls: ['./sidebar.component.scss'],
   animations: [
     trigger('accordionAnimation', [
       state('void', style({ height: '0px', opacity: 0 })),
@@ -33,7 +34,10 @@ export class SidebarComponent implements OnInit {
     },
   ];
 
-  constructor() {}
+  constructor(private translate: TranslateService) {
+    this.translate.setDefaultLang('en'); 
+    this.translate.use('en'); 
+  }
 
   ngOnInit(): void {}
 

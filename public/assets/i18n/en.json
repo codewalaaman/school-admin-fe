@@ -1,0 +1,17 @@
+{
+  "comman": {
+    
+  },
+  "sidebar": {
+    "dashboard":"Dashboard",
+    "student": {
+
+    },
+    "teacher": {}
+  },
+  "btn":{
+   "open":"Open"
+
+  }
+  
+}
